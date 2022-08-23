@@ -21,9 +21,9 @@ public class User {
 
     private Long idUser;
 
-    private String userName;
+    private String nameUsers;
 
-    private String userSurname;
+    private String surnameUsers;
 
     private Boolean isDeleted;
 
@@ -31,7 +31,7 @@ public class User {
 
     private String loginUser;
 
-    private String passwordUser;
+    private String passwordUsers;
 
     private Timestamp creationDate;
 

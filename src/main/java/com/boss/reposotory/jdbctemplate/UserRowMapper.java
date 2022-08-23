@@ -25,12 +25,12 @@ public class UserRowMapper implements RowMapper<User> {
 
 
         user.setIdUser(rs.getLong(ID_USER));
-        user.setUserName(rs.getString(NAME_USERS));
-        user.setUserSurname(rs.getString(SURNAME_USERS));
+        user.setNameUsers(rs.getString(NAME_USERS));
+        user.setSurnameUsers(rs.getString(SURNAME_USERS));
         user.setIsDeleted(rs.getBoolean(IS_DELETED));
         user.setBuys(rs.getDouble(BUYS));
         user.setLoginUser(rs.getString(LOGIN_USER));
-        user.setPasswordUser(rs.getString(PASSWORD_USERS ));
+        user.setPasswordUsers(rs.getString(PASSWORD_USERS ));
         user.setCreationDate(rs.getTimestamp(CREATION));
         user.setModificationDate(rs.getTimestamp(CHANGED));
 

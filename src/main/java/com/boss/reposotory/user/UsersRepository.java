@@ -63,12 +63,12 @@ public class UsersRepository implements UserRepository{
         User user = new User();
 
         user.setIdUser(rs.getLong(ID_USER));
-        user.setUserName(rs.getString(NAME_USERS));
-        user.setUserSurname(rs.getString(SURNAME_USERS));
+        user.setNameUsers(rs.getString(NAME_USERS));
+        user.setSurnameUsers(rs.getString(SURNAME_USERS));
         user.setIsDeleted(rs.getBoolean(IS_DELETED));
         user.setBuys(rs.getDouble(BUYS));
         user.setLoginUser(rs.getString(LOGIN_USER));
-        user.setPasswordUser(rs.getString(PASSWORD_USERS ));
+        user.setPasswordUsers(rs.getString(PASSWORD_USERS ));
         user.setCreationDate(rs.getTimestamp(CREATION));
         user.setModificationDate(rs.getTimestamp(CHANGED));
 
@@ -145,14 +145,14 @@ public class UsersRepository implements UserRepository{
             connection = getConnection();
             statement = connection.prepareStatement(insertQuery);
 
-            statement.setString(1, object.getUserName());
-            statement.setString(2, object.getUserSurname());
+            statement.setString(1, object.getNameUsers());
+            statement.setString(2, object.getSurnameUsers());
             statement.setBoolean(3, object.getIsDeleted());
             statement.setDouble(4, object.getBuys());
             statement.setTimestamp(5, object.getCreationDate());
             statement.setTimestamp(6, object.getModificationDate());
             statement.setString(7, object.getLoginUser());
-            statement.setString(8, object.getPasswordUser());
+            statement.setString(8, object.getPasswordUsers());
 
             //executeUpdate - for INSERT, UPDATE, DELETE
             statement.executeUpdate();
@@ -185,14 +185,14 @@ public class UsersRepository implements UserRepository{
             connection = getConnection();
             statement = connection.prepareStatement(updateQuery);
 
-            statement.setString(1, object.getUserName());
-            statement.setString(2, object.getUserSurname());
+            statement.setString(1, object.getNameUsers());
+            statement.setString(2, object.getSurnameUsers());
             statement.setBoolean(3, object.getIsDeleted());
             statement.setDouble(4, object.getBuys());
             statement.setTimestamp(5, object.getCreationDate());
             statement.setTimestamp(6, object.getModificationDate());
             statement.setString(7, object.getLoginUser());
-            statement.setString(8, object.getPasswordUser());
+            statement.setString(8, object.getPasswordUsers());
             statement.setLong(9, object.getIdUser());
 
             statement.executeUpdate();

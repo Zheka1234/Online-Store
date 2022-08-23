@@ -27,7 +27,7 @@ public class JdbcTemplateUserRepository implements UserRepository {
     private final UserRowMapper userRowMapper;
     @Override
     public User findById(Long id) {
-        return jdbcTemplate.queryForObject("select + from phoneshop.users where id_user = " + id, userRowMapper);
+        return jdbcTemplate.queryForObject("select * from phoneshop.users where id_user = " + id, userRowMapper);
     }
 
     @Override
@@ -48,26 +48,26 @@ public class JdbcTemplateUserRepository implements UserRepository {
     @Override
     public User create(User object) {
         final String insertQuery =
-                "insert into phoneshop.users (name_users, surname_users, is_deleted, buys, login_user, password_users," +
-                        " creation_date, modification_date) " + "values (:nameUsers, :surnameUsers, :isDeleted, :buys, :loginUser," +
-                        " :password_users, :creation_date, :modification_date);";
+                "insert into phoneshop.users ( name_users, surname_users, is_deleted, buys, login_user, password_users," +
+                        " creation_date, modification_date) " + "values ( :nameUsers, :surnameUsers, :isDeleted, :buys, :loginUser," +
+                        " :passwordUsers, :creationDate, :modificationDate);";
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("nameUser", object.getUserName());
-        mapSqlParameterSource.addValue("surname", object.getUserSurname());
+        mapSqlParameterSource.addValue("nameUsers", object.getNameUsers());
+        mapSqlParameterSource.addValue("surnameUsers", object.getSurnameUsers());
         mapSqlParameterSource.addValue("isDeleted", object.getIsDeleted());
         mapSqlParameterSource.addValue("buys", object.getBuys());
-        mapSqlParameterSource.addValue("log", object.getLoginUser());
-        mapSqlParameterSource.addValue("pass", object.getPasswordUser());
+        mapSqlParameterSource.addValue("loginUser", object.getLoginUser());
+        mapSqlParameterSource.addValue("passwordUsers", object.getPasswordUsers());
         mapSqlParameterSource.addValue("creationDate", object.getCreationDate());
         mapSqlParameterSource.addValue("modificationDate", object.getModificationDate());
 
 
         namedParameterJdbcTemplate.update(insertQuery, mapSqlParameterSource);
 
-        Long lastInsertId= namedParameterJdbcTemplate.query("select currval('phoneshop.users_id_user_seq') as last_id",
+        Long lastInsertId= namedParameterJdbcTemplate.query("select currval('phoneshop.users_id_user_seq') as last_id_user",
                 resultSet -> {
                     resultSet.next();
-                    return resultSet.getLong("Last_id");
+                    return resultSet.getLong("Last_id_user");
                 });
         return findById(lastInsertId);
     }
@@ -85,7 +85,7 @@ public class JdbcTemplateUserRepository implements UserRepository {
 
     @Override
     public Map<String, Object> getUserStats() {
-        return jdbcTemplate.query("select phoneshop.get_user_stats_average_buys(true)", resultSet -> {
+        return jdbcTemplate.query("select phoneshop.get_user_stats_average_buys(false)", resultSet -> {
             resultSet.next();
             return Collections.singletonMap("avg", resultSet.getDouble(1));
         });
