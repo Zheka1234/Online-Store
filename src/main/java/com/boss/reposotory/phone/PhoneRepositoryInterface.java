@@ -5,7 +5,7 @@ import com.boss.reposotory.CRUDRepository;
 
 import java.util.Map;
 
-public interface PhoneRepository extends CRUDRepository <Long, Phone> {
+public interface PhoneRepositoryInterface extends CRUDRepository <Long, Phone> {
 
     Map<String, Object> getMapOfPhone();
 }

@@ -2,6 +2,7 @@ package com.boss.reposotory.jdbctemplate.phone;
 
 
 import com.boss.domain.Phone;
+import com.boss.reposotory.phone.PhoneRepositoryInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 @Primary
-public class PhoneRepository implements com.boss.reposotory.phone.PhoneRepository {
+public class PhoneRepository implements PhoneRepositoryInterface {
     @Override
     public Phone findById(Long id) {
         return null;

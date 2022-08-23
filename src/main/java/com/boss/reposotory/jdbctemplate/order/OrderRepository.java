@@ -1,6 +1,7 @@
 package com.boss.reposotory.jdbctemplate.order;
 
 import com.boss.domain.Order;
+import com.boss.reposotory.order.OrderRepositoryInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 @Primary
-public class OrderRepository implements com.boss.reposotory.order.OrderRepository {
+public class OrderRepository implements OrderRepositoryInterface {
     @Override
     public Order findById(Long id) {
         return null;

@@ -5,7 +5,7 @@ import com.boss.reposotory.CRUDRepository;
 
 import java.util.Map;
 
-public interface OrderRepository extends CRUDRepository <Long, Order> {
+public interface OrderRepositoryInterface extends CRUDRepository <Long, Order> {
 
     Map<String, Object> getMapOfOrder();
 }

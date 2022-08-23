@@ -1,7 +1,7 @@
 package com.boss.service.order;
 
 import com.boss.domain.Order;
-import com.boss.reposotory.order.OrderRepository;
+import com.boss.reposotory.order.OrderRepositoryInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private final OrderRepository  orderRepository;
+    private final OrderRepositoryInterface orderRepository;
 
 
     @Override
