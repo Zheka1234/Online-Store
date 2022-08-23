@@ -1,4 +1,4 @@
-package com.boss.service;
+package com.boss.service.user;
 
 import com.boss.domain.User;
 

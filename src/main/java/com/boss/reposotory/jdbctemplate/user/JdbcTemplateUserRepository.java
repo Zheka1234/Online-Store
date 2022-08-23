@@ -1,6 +1,7 @@
-package com.boss.reposotory.jdbctemplate;
+package com.boss.reposotory.jdbctemplate.user;
 
 import com.boss.domain.User;
+import com.boss.reposotory.jdbctemplate.user.UserRowMapper;
 import com.boss.reposotory.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;

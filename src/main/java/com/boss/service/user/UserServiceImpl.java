@@ -1,7 +1,8 @@
-package com.boss.service;
+package com.boss.service.user;
 
 import com.boss.domain.User;
 import com.boss.reposotory.user.UserRepository;
+import com.boss.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

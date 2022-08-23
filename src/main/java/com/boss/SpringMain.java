@@ -1,7 +1,7 @@
 package com.boss;
 
 import com.boss.domain.User;
-import com.boss.service.UserService;
+import com.boss.service.user.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.Timestamp;

@@ -1,0 +1,32 @@
+package com.boss.service.order;
+
+import com.boss.domain.Order;
+import com.boss.reposotory.order.OrderRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+@Service
+@RequiredArgsConstructor
+public class OrderServiceImpl implements OrderService {
+
+    private final OrderRepository  orderRepository;
+
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Map<String, Object> getMapOfOrder() {
+        return orderRepository.getMapOfOrder();
+    }
+
+    @Override
+    public Order create(Order object) {
+        return orderRepository.create(object);
+    }
+}

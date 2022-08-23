@@ -1,4 +1,4 @@
-package com.boss.reposotory.jdbctemplate;
+package com.boss.reposotory.jdbctemplate.user;
 
 import com.boss.domain.User;
 import org.springframework.jdbc.core.RowMapper;
