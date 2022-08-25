@@ -65,7 +65,7 @@ public class JdbcTemplateUserRepository implements UserRepository {
 
         namedParameterJdbcTemplate.update(insertQuery, mapSqlParameterSource);
 
-        Long lastInsertId= namedParameterJdbcTemplate.query("select currval('phoneshop.users_id_user_seq') as last_id_user",
+        Long lastInsertId = namedParameterJdbcTemplate.query("select currval('phoneshop.users_id_user_seq') as last_id_user",
                 resultSet -> {
                     resultSet.next();
                     return resultSet.getLong("Last_id_user");

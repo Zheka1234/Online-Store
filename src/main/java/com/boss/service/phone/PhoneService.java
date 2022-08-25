@@ -8,12 +8,17 @@ import java.util.Map;
 
 public interface PhoneService {
 
+    Phone update(Phone object);
+
+    Phone findById(Long id);
 
     List<Phone> findAll();
 
     Map<String, Object> getMapOfPhone();
 
     Phone create(Phone object);
+
+    Long delete (Long id);
 
 
 }

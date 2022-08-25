@@ -15,6 +15,16 @@ public class PhoneServiceImpl implements PhoneService{
     private final PhoneRepository phoneRepository;
 
     @Override
+    public Phone update(Phone object) {
+        return phoneRepository.update(object);
+    }
+
+    @Override
+    public Phone findById(Long id) {
+        return phoneRepository.findById(id);
+    }
+
+    @Override
     public List<Phone> findAll() {
         return phoneRepository.findAll();
     }
@@ -27,5 +37,10 @@ public class PhoneServiceImpl implements PhoneService{
     @Override
     public Phone create(Phone object) {
         return phoneRepository.create(object);
+    }
+
+    @Override
+    public Long delete(Long id) {
+        return phoneRepository.delete(id);
     }
 }

@@ -29,4 +29,11 @@ public class OrderServiceImpl implements OrderService {
     public Order create(Order object) {
         return orderRepository.create(object);
     }
+
+    @Override
+    public Long delete(Long id) {
+        return orderRepository.delete(id);
+    }
+
+
 }

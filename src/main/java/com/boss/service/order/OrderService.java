@@ -13,4 +13,6 @@ public interface OrderService {
     Map<String, Object> getMapOfOrder();
 
     Order create(Order object);
+
+    Long delete(Long id);
 }
