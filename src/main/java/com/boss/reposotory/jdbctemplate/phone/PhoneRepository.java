@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -105,6 +106,9 @@ public class PhoneRepository implements PhoneRepositoryInterface {
 
     @Override
     public Map<String, Object> getMapOfPhone() {
-        return null;
+        return jdbcTemplate.query("select phoneshop.get_map_of_phone(true)", resultSet -> {
+            resultSet.next();
+            return Collections.singletonMap("price", resultSet.getDouble(10));
+        });
     }
 }
