@@ -5,6 +5,7 @@ import com.boss.exception.NoSuchEntityException;
 import com.boss.configuration.DatabaseProperties;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -32,6 +33,8 @@ import static com.boss.repository.user.UserTables.SURNAME_USERS;
 @Repository
 @RequiredArgsConstructor
 public class UsersRepository implements UserRepository{
+
+    private static final Logger log = Logger.getLogger(UserRepository.class);
 
     private final DatabaseProperties databaseProperties;
     @Override
@@ -207,7 +210,25 @@ public class UsersRepository implements UserRepository{
 
     @Override
     public Long delete(Long id) {
-        return null;
+
+
+        final String deleteQuery =
+                "delete from phoneshop.users where id_user = ?";
+
+        Connection connection;
+        PreparedStatement statement;
+
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement(deleteQuery);
+            statement.setLong(1, id);
+            statement.executeUpdate();
+
+            return id;
+        } catch (SQLException e) {
+            log.error("DB connection process issues", e);
+            throw new RuntimeException("SQL Issues!");
+        }
     }
 
     @Override
