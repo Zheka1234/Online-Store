@@ -1,8 +1,7 @@
 package com.boss.service.user;
 
 import com.boss.domain.User;
-import com.boss.reposotory.user.UserRepository;
-import com.boss.service.user.UserService;
+import com.boss.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +27,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User object) {
         return userRepository.create(object);
+    }
+
+    @Override
+    public Long delete(Long id) {
+        return this.userRepository.delete(id);
+    }
+
+    @Override
+    public List<User> search(int limit, int offset) {
+        return userRepository.findAll(limit, offset);
+    }
+
+    @Override
+    public User findById(Long userId) {
+        return userRepository.findById(userId);
     }
 }

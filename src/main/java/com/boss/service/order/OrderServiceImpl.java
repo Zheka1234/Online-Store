@@ -1,7 +1,7 @@
 package com.boss.service.order;
 
 import com.boss.domain.Order;
-import com.boss.reposotory.order.OrderRepositoryInterface;
+import com.boss.repository.order.OrderRepositoryInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

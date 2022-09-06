@@ -1,7 +1,7 @@
 package com.boss.service.phone;
 
 import com.boss.domain.Phone;
-import com.boss.reposotory.jdbctemplate.phone.PhoneRepository;
+import com.boss.repository.jdbctemplate.phone.PhoneRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
