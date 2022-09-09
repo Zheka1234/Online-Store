@@ -1,6 +1,6 @@
 package com.boss.controller;
 
-import com.boss.configuration.DatabaseProperties;
+
 import com.boss.repository.user.UserRepository;
 import com.boss.repository.user.UsersRepository;
 
@@ -28,11 +28,11 @@ public class FrontController extends HttpServlet {
         if (dispatcher != null) {
             System.out.println("Forward will be done!");
 
-            req.setAttribute("user", "Slava");
+            req.setAttribute("user", "Zhenya");
 
-            UserRepository userRepository = new UsersRepository(new DatabaseProperties());
+            UsersRepository usersRepository = new UsersRepository();
 
-            req.setAttribute("users", userRepository.findAll());
+            req.setAttribute("users", usersRepository.findAll());
 
             dispatcher.forward(req, resp);
         }

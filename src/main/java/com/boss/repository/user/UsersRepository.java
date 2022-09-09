@@ -2,7 +2,7 @@ package com.boss.repository.user;
 
 import com.boss.domain.User;
 import com.boss.exception.NoSuchEntityException;
-import com.boss.configuration.DatabaseProperties;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -36,7 +36,7 @@ public class UsersRepository implements UserRepository{
 
     private static final Logger log = Logger.getLogger(UserRepository.class);
 
-    private final DatabaseProperties databaseProperties;
+
     @Override
     public User findById(Long id) {
         final String findByIdQuery = "select * from phoneshop.users where id_user = " + id;
@@ -90,7 +90,7 @@ public class UsersRepository implements UserRepository{
 
     private java.sql.Connection getConnection() throws SQLException {
         try {
-            String driver = databaseProperties.getDriverName();
+            String driver = "databaseProperties.getDriverName()";
 
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
@@ -98,15 +98,13 @@ public class UsersRepository implements UserRepository{
             throw new RuntimeException("JDBC Driver Cannot be loaded!");
         }
 
-        String url = databaseProperties.getUrl();
-        String port = databaseProperties.getPort();
-        String dbName = databaseProperties.getName();
-        String login = databaseProperties.getLogin();
-        String password = databaseProperties.getPassword();
+        String url = "databaseProperties.getUrl()";
+        String login = "databaseProperties.getLogin()";
+        String password = "databaseProperties.getPassword()";
 
-        String jdbcURL = StringUtils.join(url, port, dbName);
 
-        return DriverManager.getConnection(jdbcURL, login, password);
+
+        return DriverManager.getConnection(url, login, password);
     }
 
     @Override

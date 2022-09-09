@@ -1,5 +1,3 @@
-package com.boss;
-
 import com.boss.domain.User;
 import com.boss.service.user.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
