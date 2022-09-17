@@ -56,8 +56,8 @@ public class JdbcTemplateUserRepository implements UserRepository {
         mapSqlParameterSource.addValue("surnameUsers", object.getSurnameUsers());
         mapSqlParameterSource.addValue("isDeleted", object.getIsDeleted());
         mapSqlParameterSource.addValue("buys", object.getBuys());
-        mapSqlParameterSource.addValue("loginUser", object.getLoginUser());
-        mapSqlParameterSource.addValue("passwordUsers", object.getPasswordUsers());
+        mapSqlParameterSource.addValue("loginUser", object.getLogin_user());
+        mapSqlParameterSource.addValue("passwordUsers", object.getPassword_users());
         mapSqlParameterSource.addValue("creationDate", object.getCreationDate());
         mapSqlParameterSource.addValue("modificationDate", object.getModificationDate());
 
@@ -89,5 +89,15 @@ public class JdbcTemplateUserRepository implements UserRepository {
             resultSet.next();
             return Collections.singletonMap("avg", resultSet.getDouble(1));
         });
+    }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        final String searchByLoginQuery = "select * from phoneshop.users where login_user = :login";
+
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("login_user", login);
+
+        return Optional.of(namedParameterJdbcTemplate.queryForObject(searchByLoginQuery, mapSqlParameterSource, userRowMapper));
     }
 }

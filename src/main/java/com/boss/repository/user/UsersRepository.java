@@ -70,8 +70,6 @@ public class UsersRepository implements UserRepository{
         user.setSurnameUsers(rs.getString(SURNAME_USERS));
         user.setIsDeleted(rs.getBoolean(IS_DELETED));
         user.setBuys(rs.getDouble(BUYS));
-        user.setLoginUser(rs.getString(LOGIN_USER));
-        user.setPasswordUsers(rs.getString(PASSWORD_USERS ));
         user.setCreationDate(rs.getTimestamp(CREATION));
         user.setModificationDate(rs.getTimestamp(CHANGED));
 
@@ -135,8 +133,8 @@ public class UsersRepository implements UserRepository{
     @Override
     public User create(User object) {
         final String insertQuery =
-                "insert into phoneshop.users (name_users, surname_users, is_deleted, buys, login_user, password_users," +
-                        " creation_date, modification_date) " + "values (?, ?, ?, ?, ?, ?, ?. ?);";
+                "insert into phoneshop.users (name_users, surname_users, is_deleted, buys," +
+                        " creation_date, modification_date) " + "values (?, ?, ?, ?, ?, ?);";
 
 
         Connection connection;
@@ -152,8 +150,7 @@ public class UsersRepository implements UserRepository{
             statement.setDouble(4, object.getBuys());
             statement.setTimestamp(5, object.getCreationDate());
             statement.setTimestamp(6, object.getModificationDate());
-            statement.setString(7, object.getLoginUser());
-            statement.setString(8, object.getPasswordUsers());
+
 
             //executeUpdate - for INSERT, UPDATE, DELETE
             statement.executeUpdate();
@@ -177,8 +174,8 @@ public class UsersRepository implements UserRepository{
         final String updateQuery =
                 "update phoneshop.users" +
                     " set " +
-                        " name_users = ?, surname_users = ?, is_deleted = ?, buys = ?, creation_date = ?, modification_date = ?," +
-                        "login_user = ?, password_users = ? where id_user = ?";
+                        " name_users = ?, surname_users = ?, is_deleted = ?, buys = ?, creation_date = ?, " +
+                        "modification_date = ? where id_user = ?";
         Connection connection;
         PreparedStatement statement;
 
@@ -192,9 +189,7 @@ public class UsersRepository implements UserRepository{
             statement.setDouble(4, object.getBuys());
             statement.setTimestamp(5, object.getCreationDate());
             statement.setTimestamp(6, object.getModificationDate());
-            statement.setString(7, object.getLoginUser());
-            statement.setString(8, object.getPasswordUsers());
-            statement.setLong(9, object.getIdUser());
+            statement.setLong(7, object.getIdUser());
 
             statement.executeUpdate();
 
@@ -232,5 +227,10 @@ public class UsersRepository implements UserRepository{
     @Override
     public Map<String, Object> getUserStats() {
         return null;
+    }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return Optional.empty();
     }
 }

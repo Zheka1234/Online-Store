@@ -1,5 +1,6 @@
 package com.boss.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -29,13 +30,15 @@ public class User {
 
     private Double buys;
 
-    private String loginUser;
-
-    private String passwordUsers;
-
     private Timestamp creationDate;
 
     private  Timestamp modificationDate;
+
+
+    @JsonIgnore
+    private String login_user;
+
+    private String password_users;
 
     @Override
     public String toString() {

@@ -32,8 +32,6 @@ public class SpringMain {
         user.setSurnameUsers("Boss");
         user.setIsDeleted(false);
         user.setBuys(1D);
-        user.setLoginUser("www");
-        user.setPasswordUsers("leningrad");
         user.setCreationDate(new Timestamp(new Date().getTime()));
         user.setModificationDate(new Timestamp(new Date().getTime()));
         System.out.println(user);

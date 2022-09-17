@@ -1,12 +1,13 @@
-package com.boss.repository.user;
+package com.boss.repository.hibernate;
 
 import com.boss.domain.User;
+import com.boss.domain.hibernate.HibernateUser;
 import com.boss.repository.CRUDRepository;
 
 import java.util.Map;
 import java.util.Optional;
 
-public interface UserRepository extends CRUDRepository <Long, User> {
+public interface HibernateUserInterface extends CRUDRepository<Long, HibernateUser> {
 
     Map<String, Object> getUserStats();
 

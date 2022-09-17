@@ -70,8 +70,7 @@ public class UserRestController {
         user.setCreationDate(new Timestamp(new Date().getTime()));
         user.setModificationDate(new Timestamp(new Date().getTime()));
         user.setIsDeleted(false);
-        user.setLoginUser("sdfd");
-        user.setPasswordUsers("dsffds");
+
 
 
         userService.create(user);
