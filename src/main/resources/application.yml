@@ -7,7 +7,7 @@ spring:
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
     url: ${spring.datasource.url}
-    default-schema: carshop
+    default-schema: phoneshop
     out-of-order: true
     ignore-migration-patterns: '*:ignored'
   datasource:
