@@ -4,10 +4,12 @@ package com.boss.controller;
 import com.boss.controller.request.UserCreateRequest;
 import com.boss.controller.request.UserSearchRequest;
 import com.boss.domain.User;
+import com.boss.repository.hibernate.HibernateUserInterface;
 import com.boss.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,7 +33,23 @@ public class UserRestController {
 
     private final UserService userService;
 
+    private final HibernateUserInterface userRepository;
+
+
     @GetMapping
+    @RequestMapping("/hibernate")
+    //@ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Object> findAllHibernateUsers() {
+
+        return new ResponseEntity<>(Collections.singletonMap("result", userRepository.findAll()), HttpStatus.OK);
+
+
+    }
+
+
+
+    @GetMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Object> findAllUsers(){
 
         return new ResponseEntity<>(Collections.singletonMap("result", userService.findAll()), HttpStatus.OK);
