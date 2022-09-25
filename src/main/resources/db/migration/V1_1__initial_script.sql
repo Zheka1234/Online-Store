@@ -183,27 +183,24 @@ create index if not exists order_total_sum_index
 create index if not exists order_id_user_index
     on "order" (id_user);
 
-create table if not exists role
+create table if not exists roles
 (
     id_role           bigserial
         constraint role_pk
-            primary key
-        constraint role_users_id_user_fk
-            references users
-            on update cascade on delete cascade,
+            primary key,
     role_name         varchar(20)                               not null,
     creation_date     timestamp(6) default CURRENT_TIMESTAMP(6) not null,
     modification_date timestamp(6) default CURRENT_TIMESTAMP(6) not null
 );
 
-alter table role
+alter table roles
     owner to postgres;
 
 create unique index if not exists role_id_role_uindex
-    on role (id_role);
+    on roles (id_role);
 
 create index if not exists role_role_name_index
-    on role (role_name);
+    on roles (role_name);
 
 create table if not exists l_role_users
 (
@@ -212,7 +209,7 @@ create table if not exists l_role_users
             primary key,
     id_role        bigint not null
         constraint l_role_users_role_id_role_fk
-            references role
+            references roles
             on update cascade on delete cascade,
     id_user        bigint not null
         constraint l_role_users_users_id_user_fk

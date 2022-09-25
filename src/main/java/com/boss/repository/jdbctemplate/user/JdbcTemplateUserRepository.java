@@ -93,10 +93,10 @@ public class JdbcTemplateUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findByLogin(String login) {
-        final String searchByLoginQuery = "select * from phoneshop.users where login_user = :login";
+        final String searchByLoginQuery = "select * from phoneshop.users where login_user = :loginUser";
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("login_user", login);
+        mapSqlParameterSource.addValue("login", login);
 
         return Optional.of(namedParameterJdbcTemplate.queryForObject(searchByLoginQuery, mapSqlParameterSource, userRowMapper));
     }

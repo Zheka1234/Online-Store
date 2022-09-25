@@ -23,7 +23,7 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {
-        "role"
+        "roles"
 })
 @Table(name = "users")
 public class HibernateUser {
@@ -64,7 +64,7 @@ public class HibernateUser {
 
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("users")
-    private Set<HibernateRole> role;
+    private Set<HibernateRole> roles;
 
 
 

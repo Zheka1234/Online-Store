@@ -26,7 +26,7 @@ public class RoleRepository implements RoleRepositoryInterface {
 
     @Override
     public Role findById(Long id) {
-        return jdbcTemplate.queryForObject("select * from phoneshop.role where id_role = " + id, roleRowMapper);
+        return jdbcTemplate.queryForObject("select * from phoneshop.roles where id_role = " + id, roleRowMapper);
     }
 
     @Override
@@ -41,13 +41,13 @@ public class RoleRepository implements RoleRepositoryInterface {
 
     @Override
     public List<Role> findAll(int limit, int offset) {
-        return jdbcTemplate.query("select * from phoneshop.role limit " + limit + " offset " + offset, roleRowMapper);
+        return jdbcTemplate.query("select * from phoneshop.roles limit " + limit + " offset " + offset, roleRowMapper);
     }
 
     @Override
     public Role create(Role object) {
         final String insertQuery =
-                "insert into phoneshop.role (role_name, creation_date, modification_date) " +
+                "insert into phoneshop.roles (role_name, creation_date, modification_date) " +
                         " values (:roleName, :creationDate, :modificationDate);";
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -73,15 +73,15 @@ public class RoleRepository implements RoleRepositoryInterface {
 
     @Override
     public Long delete(Long id) {
-        jdbcTemplate.update("delete from phoneshop.role where id_role = " + id);
+        jdbcTemplate.update("delete from phoneshop.roles where id_role = " + id);
         return id;
     }
 
     @Override
     public List<Role> findRoleByUserId(Long userId) {
         return jdbcTemplate.query(
-                "select * from phoneshop.role " +
-                        " inner join phoneshop.l_role_users lru on role.id_role = lru.id_role " +
+                "select * from phoneshop.roles " +
+                        " inner join phoneshop.l_role_users lru on roles.id_role = lru.id_role " +
                         " where lru.id_user= " + userId,
                 roleRowMapper);
     }

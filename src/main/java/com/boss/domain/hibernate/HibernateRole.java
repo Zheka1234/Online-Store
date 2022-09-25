@@ -21,7 +21,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class HibernateRole {
 
     @Id
@@ -41,9 +41,9 @@ public class HibernateRole {
 
     @ManyToMany
     @JoinTable(name = "l_role_users",
-            joinColumns = @JoinColumn(name = "id_user"),
-            inverseJoinColumns = @JoinColumn(name = "id_role")
+            joinColumns = @JoinColumn(name = "id_role"),
+            inverseJoinColumns = @JoinColumn(name = "id_user")
     )
-    @JsonIgnoreProperties("role")
+    @JsonIgnoreProperties("roles")
     private Set<HibernateUser> users;
 }
