@@ -1,6 +1,6 @@
 package com.boss;
 
-import com.boss.configuration.PersistenceProvidersConfiguration;
+import com.boss.congiguration.PersistenceProvidersConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;

@@ -4,7 +4,6 @@ import com.boss.domain.User;
 import com.boss.exception.NoSuchEntityException;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
@@ -24,9 +23,7 @@ import static com.boss.repository.user.UserTables.CHANGED;
 import static com.boss.repository.user.UserTables.CREATION;
 import static com.boss.repository.user.UserTables.ID_USER;
 import static com.boss.repository.user.UserTables.IS_DELETED;
-import static com.boss.repository.user.UserTables.LOGIN_USER;
 import static com.boss.repository.user.UserTables.NAME_USERS;
-import static com.boss.repository.user.UserTables.PASSWORD_USERS;
 import static com.boss.repository.user.UserTables.SURNAME_USERS;
 
 

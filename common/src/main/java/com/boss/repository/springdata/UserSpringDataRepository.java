@@ -13,6 +13,6 @@ public interface UserSpringDataRepository extends CrudRepository<HibernateUser, 
         PagingAndSortingRepository<HibernateUser, Long> {
 
     @Modifying
-    @Query(value = "insert into phoneshop.l_role_users(id_role, id_user) values (:id_user, :id_role)", nativeQuery = true)
+    @Query(value = "insert into phoneshop.l_role_users(id_role, id_user) values (:id_role, :id_user)", nativeQuery = true)
     int createRoleRow(@Param("id_user") Long isUser, @Param("id_role") Long idRole);
 }

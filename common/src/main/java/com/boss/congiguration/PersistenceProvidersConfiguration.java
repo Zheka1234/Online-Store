@@ -1,4 +1,4 @@
-package com.boss.configuration;
+package com.boss.congiguration;
 
 
 import org.hibernate.SessionFactory;
