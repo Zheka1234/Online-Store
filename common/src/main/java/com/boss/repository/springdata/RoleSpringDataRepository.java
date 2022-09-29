@@ -11,5 +11,5 @@ public interface RoleSpringDataRepository extends CrudRepository<HibernateRole, 
         JpaRepository<HibernateRole, Integer>,
         PagingAndSortingRepository<HibernateRole, Integer> {
 
-    List<HibernateRole> findByUserId(Long userId);
+    List<HibernateRole> findHibernateRoleByIdRole(Long userId);
 }

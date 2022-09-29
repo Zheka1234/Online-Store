@@ -1,7 +1,6 @@
 package com.boss.security;
 
 
-import com.boss.domain.Role;
 import com.boss.domain.SystemRoles;
 import com.boss.domain.hibernate.HibernateRole;
 import com.boss.domain.hibernate.HibernateUser;
@@ -29,7 +28,7 @@ public class UserSecurityService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
             /*Find user in DB*/
-            Optional<HibernateUser> searchResult = userSpringDataRepository.findByLogin(username);
+            Optional<HibernateUser> searchResult = userSpringDataRepository.findHibernateUserByLoginUser(username);
 
             if (searchResult.isPresent()) {
                HibernateUser user = searchResult.get();
@@ -41,7 +40,7 @@ public class UserSecurityService implements UserDetailsService {
                         user.getPasswordUsers(),
 //                        ["ROLE_USER", "ROLE_ADMIN"]
                         AuthorityUtils.commaSeparatedStringToAuthorityList(
-                                roleSpringDataRepository.findByUserId(user.getIdUser())
+                                roleSpringDataRepository.findHibernateRoleByIdRole(user.getIdUser())
                                         .stream()
                                         .map(HibernateRole::getRoleName)
                                         .map(SystemRoles::name)
