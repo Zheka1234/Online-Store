@@ -2,9 +2,7 @@ package com.boss.controller.springdata;
 
 
 import com.boss.controller.request.UserCreateRequest;
-import com.boss.domain.Gender;
-import com.boss.domain.hibernate.HibernateUser;
-import com.boss.repository.role.RoleRepositoryInterface;
+import com.boss.domain.hibernate.HibernateUser;import com.boss.repository.springdata.RoleSpringDataRepository;
 import com.boss.repository.springdata.UserSpringDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -31,7 +29,7 @@ public class UserController {
 
     private final UserSpringDataRepository repository;
 
-    private final RoleRepositoryInterface roleRepository;
+    private final RoleSpringDataRepository roleRepository;
 
     @GetMapping
     public ResponseEntity<Object> testEndpoint() {
@@ -57,7 +55,7 @@ public class UserController {
 
         HibernateUser createdUser = repository.save(user);
 
-        repository.createRoleRow(createdUser.getIdUser(), roleRepository.findById(1L).getIdRole());
+        repository.createRoleRow(createdUser.getIdUser(), roleRepository.findById(1).get().getIdRole());
 
         Map<String, Object> model = new HashMap<>();
         model.put("user", createdUser);

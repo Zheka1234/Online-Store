@@ -2,9 +2,11 @@ package com.boss.security;
 
 
 import com.boss.domain.Role;
-import com.boss.domain.User;
-import com.boss.repository.role.RoleRepositoryInterface;
-import com.boss.repository.user.UserRepository;
+import com.boss.domain.SystemRoles;
+import com.boss.domain.hibernate.HibernateRole;
+import com.boss.domain.hibernate.HibernateUser;
+import com.boss.repository.springdata.RoleSpringDataRepository;
+import com.boss.repository.springdata.UserSpringDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -19,30 +21,30 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserSecurityService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserSpringDataRepository userSpringDataRepository;
 
-    private final RoleRepositoryInterface roleRepository;
+    private final RoleSpringDataRepository roleSpringDataRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
             /*Find user in DB*/
-            Optional<User> searchResult = userRepository.findByLogin(username);
+            Optional<HibernateUser> searchResult = userSpringDataRepository.findByLogin(username);
 
             if (searchResult.isPresent()) {
-                User user = searchResult.get();
+               HibernateUser user = searchResult.get();
 
                 /*We are creating Spring Security User object*/
 
                 return new org.springframework.security.core.userdetails.User(
-                        user.getLogin_user(),
-                        user.getPassword_users(),
+                        user.getLoginUser(),
+                        user.getPasswordUsers(),
 //                        ["ROLE_USER", "ROLE_ADMIN"]
                         AuthorityUtils.commaSeparatedStringToAuthorityList(
-                                roleRepository.findRoleByUserId(user.getIdUser())
+                                roleSpringDataRepository.findByUserId(user.getIdUser())
                                         .stream()
-                                        .map(Role::getRoleName)
-                                        //.map(SystemRoles::name)
+                                        .map(HibernateRole::getRoleName)
+                                        .map(SystemRoles::name)
                                         .collect(Collectors.joining(","))
                         )
                 );
