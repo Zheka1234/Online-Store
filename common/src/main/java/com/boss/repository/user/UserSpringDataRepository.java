@@ -1,4 +1,4 @@
-package com.boss.repository.springdata;
+package com.boss.repository.user;
 
 import com.boss.domain.Gender;
 import com.boss.domain.hibernate.HibernateUser;

@@ -1,4 +1,4 @@
-package com.boss.repository.springdata;
+package com.boss.repository.roles;
 
 import com.boss.domain.hibernate.HibernateRole;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +12,8 @@ public interface RoleSpringDataRepository extends CrudRepository<HibernateRole, 
         PagingAndSortingRepository<HibernateRole, Integer> {
 
     List<HibernateRole> findHibernateRoleByIdRole(Long userId);
+
+
+
+
 }

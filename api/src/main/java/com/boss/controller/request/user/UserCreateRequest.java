@@ -1,4 +1,4 @@
-package com.boss.controller.request;
+package com.boss.controller.request.user;
 
 
 import lombok.Data;

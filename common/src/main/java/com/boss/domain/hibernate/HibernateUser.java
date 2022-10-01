@@ -3,6 +3,7 @@ package com.boss.domain.hibernate;
 
 import com.boss.domain.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -23,7 +25,7 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {
-        "roles"
+        "roles", "order"
 })
 @Table(name = "users")
 public class HibernateUser {
@@ -65,6 +67,9 @@ public class HibernateUser {
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("users")
     private Set<HibernateRole> roles;
+
+
+
 
 
 
