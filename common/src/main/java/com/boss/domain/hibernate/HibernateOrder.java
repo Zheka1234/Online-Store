@@ -1,9 +1,8 @@
 package com.boss.domain.hibernate;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +15,7 @@ import java.sql.Timestamp;
 
 @Data
 @Entity
+@Cacheable
 @Table(name = "order")
 public class HibernateOrder {
 
@@ -44,6 +44,8 @@ public class HibernateOrder {
 
     @Column(name = "modification_date")
     private Timestamp modificationDate;
+
+
 
 
 }

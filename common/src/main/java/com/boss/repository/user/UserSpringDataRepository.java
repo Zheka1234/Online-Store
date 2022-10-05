@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public interface UserSpringDataRepository extends CrudRepository<HibernateUser, Long>, JpaRepository<HibernateUser, Long>,
-        PagingAndSortingRepository<HibernateUser, Long> {
-
-
-
+@Repository
+public interface UserSpringDataRepository extends CrudRepository<HibernateUser, Long>,  JpaRepository<HibernateUser, Long>,
+        PagingAndSortingRepository <HibernateUser, Long>
+{
 
     @Modifying
     @Query(value = "insert into phoneshop.l_role_users(id_role, id_user) values (:id_role, :id_user)", nativeQuery = true)

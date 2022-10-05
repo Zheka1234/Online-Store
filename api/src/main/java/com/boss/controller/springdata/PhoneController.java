@@ -2,8 +2,10 @@ package com.boss.controller.springdata;
 
 
 import com.boss.controller.request.phone.PhoneCreatRequest;
+import com.boss.controller.request.phone.PhoneUpdateRequest;
 import com.boss.domain.hibernate.HibernatePhone;
 import com.boss.repository.Phone.PhoneSpringDataRepository;
+import com.boss.service.phone.PhoneServis;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +32,8 @@ import java.util.Map;
 public class PhoneController {
 
     private final PhoneSpringDataRepository phoneSpringDataRepository;
+
+    private final PhoneServis phoneServis;
 
 
     @GetMapping
@@ -60,8 +65,15 @@ public class PhoneController {
         return new ResponseEntity<>(model,HttpStatus.CREATED);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Object> deletePhoneById(@PathVariable Long id){
-//        return new ResponseEntity<>();
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteUsersById(@PathVariable Long id) {
+
+        phoneServis.delete(id);
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("id", id);
+        return new ResponseEntity<>(model, HttpStatus.OK);
+
+    }
+
 }

@@ -2,6 +2,7 @@ package com.boss.domain.hibernate;
 
 
 import lombok.Data;
+import org.springframework.cache.annotation.Cacheable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import java.sql.Timestamp;
 
 @Data
 @Entity
+@Cacheable("delivery_point")
 @Table(name = "delivery_point")
 public class HibernatePoint {
 
