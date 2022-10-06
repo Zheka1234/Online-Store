@@ -34,4 +34,6 @@ public class HibernatePoint {
 
     @Column(name = "modification_date")
     private Timestamp modificationDate;
+
+
 }

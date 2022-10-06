@@ -4,6 +4,7 @@ package com.boss.domain.hibernate;
 import com.boss.domain.SystemRoles;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.cache.annotation.Cacheable;
 
 import javax.persistence.Column;
@@ -22,6 +23,10 @@ import java.util.Set;
 
 @Data
 @Entity
+
+@EqualsAndHashCode(exclude = {
+        "users"
+})
 @Table(name = "roles")
 @Cacheable("roles")
 public class HibernateRole {
