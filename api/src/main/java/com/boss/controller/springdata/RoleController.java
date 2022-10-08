@@ -22,13 +22,12 @@ public class RoleController {
 
     private final RoleSpringDataRepository repository;
 
-    @GetMapping
-    public ResponseEntity<Object> findAllRoles(){
+        @GetMapping
+        public ResponseEntity<Object> findAllRolesWithCache() {
 
-        return new ResponseEntity<>(
-                Collections.singletonMap("result", repository.findAll()), HttpStatus.OK
-        );
-    }
-
-
+            return new ResponseEntity<>(
+                    Collections.singletonMap("result", repository.findAllCustom()),
+                    HttpStatus.OK
+            );
+        }
 }
