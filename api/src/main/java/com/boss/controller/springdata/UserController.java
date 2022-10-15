@@ -87,30 +87,30 @@ public class UserController {
 
         HibernateUser hibernateUser = converter.convert(userCreateRequest, HibernateUser.class);
 
-//        HibernateUser createdUser = repository.save(setRoles(hibernateUser));
-//
-//        Map<String, Object> model = new HashMap<>();
-//        model.put("user", repository.findById(createdUser.getIdUser()).get());
+        HibernateUser createdUser = repository.save(setRoles(hibernateUser));
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("user", repository.findById(createdUser.getIdUser()).get());
 
         return repository.save(hibernateUser);
 
 
     }
-//    private HibernateUser setRoles(HibernateUser user) {
-//        Set<HibernateRole> roles = user.getRoles();
-//
-//        Set<HibernateRole> updatedRoles = new HashSet<>();
-//
-//        if (!CollectionUtils.isEmpty(roles)) {
-//            updatedRoles.addAll(roles);
-//        }
-//        updatedRoles.add(roleSpringDataRepository.findById(1).get());
-//        updatedRoles.add(roleSpringDataRepository.findById(2).get());
-//
-//        user.setRoles(updatedRoles);
-//
-//        return user;
-//    }
+    private HibernateUser setRoles(HibernateUser user) {
+        Set<HibernateRole> roles = user.getRoles();
+
+        Set<HibernateRole> updatedRoles = new HashSet<>();
+
+        if (!CollectionUtils.isEmpty(roles)) {
+            updatedRoles.addAll(roles);
+        }
+        updatedRoles.add(roleSpringDataRepository.findHibernateRoleByIdRole(1l).get(0));
+        updatedRoles.add(roleSpringDataRepository.findHibernateRoleByIdRole(2l).get(0));
+
+        user.setRoles(updatedRoles);
+
+        return user;
+    }
 
 
     @DeleteMapping("/{id}")

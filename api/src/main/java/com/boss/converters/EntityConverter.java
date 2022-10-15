@@ -3,6 +3,7 @@ package com.boss.converters;
 import com.boss.controller.request.user.UserCreateRequest;
 import com.boss.domain.Credentials;
 import com.boss.domain.hibernate.HibernateUser;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.core.convert.converter.Converter;
 
 import java.sql.Timestamp;
@@ -18,8 +19,8 @@ public abstract class EntityConverter<S, T> implements Converter<S, T> {
 
 
         Credentials credentials = new Credentials();
-        credentials.setLogin(request.getLoginUser());
-        credentials.setPassword(request.getPasswordUsers());
+        credentials.setLogin(RandomStringUtils.randomAlphabetic(10));
+        credentials.setPassword(RandomStringUtils.randomAlphabetic(10));
 
         user.setCredentials(credentials);
 
