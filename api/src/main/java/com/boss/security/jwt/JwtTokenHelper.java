@@ -28,7 +28,7 @@ public class JwtTokenHelper {
     /*Generate JWT Token and fields in token. Also add signature into 3-d part of token*/
     public static final String CREATE_VALUE = "created";
 
-    public static final String ROLE = "role";
+    public static final String ROLES = "roles";
 
     public static final SignatureAlgorithm ALGORITHM = SignatureAlgorithm.HS512;
 
@@ -101,7 +101,7 @@ public class JwtTokenHelper {
         Map<String, Object> claims = new HashMap<>();
         claims.put(SUBJECT, userDetails.getUsername());
         claims.put(CREATE_VALUE, generateCurrentDate());
-        claims.put(ROLE, getEncryptedRoles(userDetails));
+        claims.put(ROLES, getEncryptedRoles(userDetails));
         return generateToken(claims);
     }
 

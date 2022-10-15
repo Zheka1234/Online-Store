@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
@@ -53,62 +54,41 @@ public class UserController {
     }
 
 
-    @PostMapping
-    @Transactional
-    public ResponseEntity<Object> createUser(@RequestBody UserCreateRequest createRequest) {
-
-        HibernateUser user = new HibernateUser();
-        user.setNameUsers(createRequest.getNameUsers());
-        user.setSurnameUsers(createRequest.getSurnameUsers());
-        user.setCreationDate(new Timestamp(new Date().getTime()));
-        user.setModificationDate(new Timestamp(new Date().getTime()));
-        user.setIsDeleted(false);
-        user.setBuys(createRequest.getBuys());
-
-        user.setLoginUser(RandomStringUtils.randomAlphabetic(10));
-        user.setPasswordUsers(RandomStringUtils.randomAlphabetic(10));
-
-        HibernateUser createdUser = repository.save(user);
-
-        repository.createRoleRow(createdUser.getIdUser(), roleSpringDataRepository.findHibernateRoleByIdRole(1L).get(0).getIdRole());
-
-        Map<String, Object> model = new HashMap<>();
-        model.put("user", createdUser);
-
-        return new ResponseEntity<>(model, HttpStatus.CREATED);
-    }
-
-
-//
 //    @PostMapping
 //    @Transactional
 //    public ResponseEntity<Object> createUser(@RequestBody UserCreateRequest createRequest) {
 //
-//        HibernateUser user = converter.convert(createRequest, HibernateUser.class);
-//        HibernateUser createdUser = repository.save(setRoles(user));
+//        HibernateUser user = new HibernateUser();
+//        user.setNameUsers(createRequest.getNameUsers());
+//        user.setSurnameUsers(createRequest.getSurnameUsers());
+//        user.setCreationDate(new Timestamp(new Date().getTime()));
+//        user.setModificationDate(new Timestamp(new Date().getTime()));
+//        user.setIsDeleted(false);
+//        user.setBuys(createRequest.getBuys());
 //
-//        //repository.createRoleRow(createdUser.getId(), roleRepository.findById(1L).getId());
+//        user.setLoginUser(RandomStringUtils.randomAlphabetic(10));
+//        user.setPasswordUsers(RandomStringUtils.randomAlphabetic(10));
+//
+//        HibernateUser createdUser = repository.save(user);
+//
+//        repository.createRoleRow(createdUser.getIdUser(), roleSpringDataRepository.findHibernateRoleByIdRole(1L).get(0).getIdRole());
 //
 //        Map<String, Object> model = new HashMap<>();
-//        model.put("user", repository.findById(createdUser.getIdUser()).get());
+//        model.put("user", createdUser);
 //
 //        return new ResponseEntity<>(model, HttpStatus.CREATED);
 //    }
-//
-//    private HibernateUser setRoles(HibernateUser user) {
-//        Set<HibernateRole> roles = user.getRoles();
-//
-//        Set<HibernateRole> updatedRoles = new HashSet<>();
-//
-//        if (!CollectionUtils.isEmpty(roles)) {
-//            updatedRoles.addAll(roles);
-//        }
-//        updatedRoles.add(roleSpringDataRepository.findById(1).get());
-//        updatedRoles.add(roleSpringDataRepository.findById(2).get());
-//
-//        user.setRoles(updatedRoles);
-//
-//        return user;
+
+
+    @PostMapping
+    @Transactional
+    @ResponseStatus(HttpStatus.CREATED)
+    public HibernateUser savingUser(@RequestBody UserCreateRequest userCreateRequest) {
+
+        HibernateUser hibernateUser = converter.convert(userCreateRequest, HibernateUser.class);
+
+        return repository.save(hibernateUser);
+    }
 
 
     @DeleteMapping("/{id}")

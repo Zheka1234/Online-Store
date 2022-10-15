@@ -51,18 +51,18 @@ public class HibernateUser {
     @Column(name = "buys")
     private Double buys;
 
-    @Column(name = "login_user")
-    private String loginUser;
+//    @Column(name = "login_user")
+//    private String loginUser;
+//
+//    @Column(name = "password_users")
+//    private String passwordUsers;
 
-    @Column(name = "password_users")
-    private String passwordUsers;
-
-//    @Embedded
-//    @AttributeOverrides({
-//            @AttributeOverride(name = "login", column = @Column(name = "login_user")),
-//            @AttributeOverride(name = "password", column = @Column(name = "password_users"))
-//    })
-//    private Credentials credentials;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "login", column = @Column(name = "login_user")),
+            @AttributeOverride(name = "password", column = @Column(name = "password_users"))
+    })
+    private Credentials credentials;
 
     @Column(name = "creation_date")
     private Timestamp creationDate;

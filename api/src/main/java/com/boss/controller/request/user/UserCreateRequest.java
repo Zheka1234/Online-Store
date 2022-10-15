@@ -12,4 +12,10 @@ public class UserCreateRequest {
     private String surnameUsers;
 
     private Double buys;
+
+    private String loginUser;
+
+    private String passwordUsers;
+
+    private Boolean isDeleted;
 }
