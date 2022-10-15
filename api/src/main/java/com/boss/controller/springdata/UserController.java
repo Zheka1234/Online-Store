@@ -2,15 +2,18 @@ package com.boss.controller.springdata;
 
 
 import com.boss.controller.request.user.UserCreateRequest;
+import com.boss.domain.hibernate.HibernateRole;
 import com.boss.domain.hibernate.HibernateUser;import com.boss.repository.roles.RoleSpringDataRepository;
 import com.boss.repository.user.UserSpringDataRepository;
 import com.boss.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +26,11 @@ import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,9 +39,11 @@ public class UserController {
 
     private final UserSpringDataRepository repository;
 
-    private final RoleSpringDataRepository roleRepository;
+    private final RoleSpringDataRepository roleSpringDataRepository;
 
     private final UserService userService;
+
+    private final ConversionService converter;
 
     @GetMapping
     public ResponseEntity<Object> testEndpoint() {
@@ -61,13 +70,45 @@ public class UserController {
 
         HibernateUser createdUser = repository.save(user);
 
-        repository.createRoleRow(createdUser.getIdUser(), roleRepository.findHibernateRoleByIdRole(1L).get(0).getIdRole());
+        repository.createRoleRow(createdUser.getIdUser(), roleSpringDataRepository.findHibernateRoleByIdRole(1L).get(0).getIdRole());
 
         Map<String, Object> model = new HashMap<>();
         model.put("user", createdUser);
 
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
+
+
+//
+//    @PostMapping
+//    @Transactional
+//    public ResponseEntity<Object> createUser(@RequestBody UserCreateRequest createRequest) {
+//
+//        HibernateUser user = converter.convert(createRequest, HibernateUser.class);
+//        HibernateUser createdUser = repository.save(setRoles(user));
+//
+//        //repository.createRoleRow(createdUser.getId(), roleRepository.findById(1L).getId());
+//
+//        Map<String, Object> model = new HashMap<>();
+//        model.put("user", repository.findById(createdUser.getIdUser()).get());
+//
+//        return new ResponseEntity<>(model, HttpStatus.CREATED);
+//    }
+//
+//    private HibernateUser setRoles(HibernateUser user) {
+//        Set<HibernateRole> roles = user.getRoles();
+//
+//        Set<HibernateRole> updatedRoles = new HashSet<>();
+//
+//        if (!CollectionUtils.isEmpty(roles)) {
+//            updatedRoles.addAll(roles);
+//        }
+//        updatedRoles.add(roleSpringDataRepository.findById(1).get());
+//        updatedRoles.add(roleSpringDataRepository.findById(2).get());
+//
+//        user.setRoles(updatedRoles);
+//
+//        return user;
 
 
     @DeleteMapping("/{id}")
@@ -79,7 +120,6 @@ public class UserController {
         model.put("id", id);
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
-
 
 
 
