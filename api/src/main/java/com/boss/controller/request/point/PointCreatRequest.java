@@ -11,5 +11,4 @@ public class PointCreatRequest {
     private String hours;
 
 
-
 }

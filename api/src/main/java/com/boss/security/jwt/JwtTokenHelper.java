@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 import static io.jsonwebtoken.Claims.SUBJECT;
 import static java.util.Calendar.MILLISECOND;
 
+
+
 @Component
 @RequiredArgsConstructor
 public class JwtTokenHelper {
@@ -35,6 +37,14 @@ public class JwtTokenHelper {
     public static final String JWT = "JWT";
 
     private final JwtSecurityConfig jwtTokenConfig;
+
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(SUBJECT, userDetails.getUsername());
+        claims.put(CREATE_VALUE, generateCurrentDate());
+        claims.put(ROLES, getEncryptedRoles(userDetails));
+        return generateToken(claims);
+    }
 
     private String generateToken(Map<String, Object> claims) {
 
@@ -95,14 +105,6 @@ public class JwtTokenHelper {
 
     private Boolean isCreatedBeforeLastPasswordReset(Date created, Date lastPasswordReset) {
         return (lastPasswordReset != null && created.before(lastPasswordReset));
-    }
-
-    public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put(SUBJECT, userDetails.getUsername());
-        claims.put(CREATE_VALUE, generateCurrentDate());
-        claims.put(ROLES, getEncryptedRoles(userDetails));
-        return generateToken(claims);
     }
 
     private List<String> getEncryptedRoles(UserDetails userDetails) {

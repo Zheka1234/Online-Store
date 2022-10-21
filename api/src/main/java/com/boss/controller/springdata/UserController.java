@@ -3,11 +3,11 @@ package com.boss.controller.springdata;
 
 import com.boss.controller.request.user.UserCreateRequest;
 import com.boss.domain.hibernate.HibernateRole;
-import com.boss.domain.hibernate.HibernateUser;import com.boss.repository.roles.RoleSpringDataRepository;
+import com.boss.domain.hibernate.HibernateUser;
+import com.boss.repository.roles.RoleSpringDataRepository;
 import com.boss.repository.user.UserSpringDataRepository;
 import com.boss.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -23,15 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RequiredArgsConstructor
 @RestController
@@ -54,32 +50,6 @@ public class UserController {
     }
 
 
-//    @PostMapping
-//    @Transactional
-//    public ResponseEntity<Object> createUser(@RequestBody UserCreateRequest createRequest) {
-//
-//        HibernateUser user = new HibernateUser();
-//        user.setNameUsers(createRequest.getNameUsers());
-//        user.setSurnameUsers(createRequest.getSurnameUsers());
-//        user.setCreationDate(new Timestamp(new Date().getTime()));
-//        user.setModificationDate(new Timestamp(new Date().getTime()));
-//        user.setIsDeleted(false);
-//        user.setBuys(createRequest.getBuys());
-//
-//        user.setLoginUser(RandomStringUtils.randomAlphabetic(10));
-//        user.setPasswordUsers(RandomStringUtils.randomAlphabetic(10));
-//
-//        HibernateUser createdUser = repository.save(user);
-//
-//        repository.createRoleRow(createdUser.getIdUser(), roleSpringDataRepository.findHibernateRoleByIdRole(1L).get(0).getIdRole());
-//
-//        Map<String, Object> model = new HashMap<>();
-//        model.put("user", createdUser);
-//
-//        return new ResponseEntity<>(model, HttpStatus.CREATED);
-//    }
-
-
     @PostMapping
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
@@ -96,6 +66,7 @@ public class UserController {
 
 
     }
+
     private HibernateUser setRoles(HibernateUser user) {
         Set<HibernateRole> roles = user.getRoles();
 
@@ -122,7 +93,6 @@ public class UserController {
         model.put("id", id);
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
-
 
 
 }

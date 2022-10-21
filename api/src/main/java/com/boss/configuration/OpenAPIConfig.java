@@ -20,15 +20,15 @@ public class OpenAPIConfig {
                 .title("Store API")
                 .description("API for working with store")
                 .version("2.0")
-                .contact(apiContact());
-//                .license(apiLicence());
+                .contact(apiContact())
+                .license(apiLicence());
     }
 
-//    private License apiLicence() {
-//        return new License()
-//                .name("Apache License 2.0")
-//                .url("https://www.apache.org/licenses/LICENSE-2.0.html");
-//    }
+    private License apiLicence() {
+        return new License()
+                .name("Apache License 2.0")
+                .url("https://www.apache.org/licenses/LICENSE-2.0.html");
+    }
 
     private Contact apiContact() {
         return new Contact()

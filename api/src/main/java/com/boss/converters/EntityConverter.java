@@ -17,13 +17,6 @@ public abstract class EntityConverter<S, T> implements Converter<S, T> {
         user.setBuys(request.getBuys());
         user.setIsDeleted(false);
 
-
-        Credentials credentials = new Credentials();
-        credentials.setLogin(RandomStringUtils.randomAlphabetic(10));
-        credentials.setPassword(RandomStringUtils.randomAlphabetic(10));
-
-        user.setCredentials(credentials);
-
         user.setModificationDate(new Timestamp(new Date().getTime()));
 
 

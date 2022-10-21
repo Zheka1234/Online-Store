@@ -3,6 +3,7 @@ package com.boss.domain.hibernate;
 
 import com.boss.domain.Credentials;
 import com.boss.domain.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
@@ -50,12 +51,6 @@ public class HibernateUser {
 
     @Column(name = "buys")
     private Double buys;
-
-//    @Column(name = "login_user")
-//    private String loginUser;
-//
-//    @Column(name = "password_users")
-//    private String passwordUsers;
 
     @Embedded
     @AttributeOverrides({

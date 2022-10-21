@@ -1,6 +1,7 @@
 package com.boss.security;
 
 
+import com.boss.security.filter.AuthenticationTokenFilter;
 import com.boss.security.jwt.JwtTokenHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RequiredArgsConstructor
 @Configuration
@@ -27,13 +30,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenHelper tokenUtils;
 
-    private final NoOpPasswordEncoder noOpPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
                 .userDetailsService(userProvider)
-                .passwordEncoder(noOpPasswordEncoder);
+                .passwordEncoder(passwordEncoder);
     }
 
 
@@ -68,5 +71,26 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authenticated();
 
 
+    }
+
+    @Bean
+    public AuthenticationTokenFilter authenticationTokenFilterBean(AuthenticationManager authenticationManager) throws Exception {
+        AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter(tokenUtils, userProvider);
+        authenticationTokenFilter.setAuthenticationManager(authenticationManager);
+        return authenticationTokenFilter;
+    }
+
+    //For swagger access only
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers(
+                        "/v3/api-docs/**",
+                        "/configuration/ui/**",
+                        "/swagger-resources/**",
+                        "/configuration/security/**",
+                        "/swagger-ui/**",
+                        "/webjars/**",
+                        "/swagger.json");
     }
 }

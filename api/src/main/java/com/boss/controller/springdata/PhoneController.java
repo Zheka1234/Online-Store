@@ -39,7 +39,8 @@ public class PhoneController {
     @GetMapping
     public ResponseEntity<Object> findAllPhone(){
 
-        return new ResponseEntity<>(Collections.singletonMap("result", phoneSpringDataRepository.findAll()), HttpStatus.OK);
+        return new ResponseEntity<>(Collections.singletonMap("result", phoneSpringDataRepository.findAll()),
+                HttpStatus.OK);
 
     }
 

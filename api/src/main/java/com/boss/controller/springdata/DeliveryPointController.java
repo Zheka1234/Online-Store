@@ -1,7 +1,6 @@
 package com.boss.controller.springdata;
 
 
-import com.boss.controller.request.phone.PhoneCreatRequest;
 import com.boss.controller.request.point.PointCreatRequest;
 import com.boss.domain.hibernate.HibernatePoint;
 import com.boss.repository.point.PointSpringDataRepository;

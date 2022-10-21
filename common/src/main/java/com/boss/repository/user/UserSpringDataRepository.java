@@ -1,6 +1,5 @@
 package com.boss.repository.user;
 
-import com.boss.domain.Gender;
 import com.boss.domain.hibernate.HibernateUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
