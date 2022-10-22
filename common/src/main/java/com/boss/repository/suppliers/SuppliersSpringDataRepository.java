@@ -9,8 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface SuppliersSpringDataRepository extends
-        JpaRepository<HibernateSuppliers, Long> {
+public interface SuppliersSpringDataRepository extends JpaRepository<HibernateSuppliers, Long> {
 
     List<HibernateSuppliers> findHibernateSuppliersByIdSuppliers(Long suppliersId);
 

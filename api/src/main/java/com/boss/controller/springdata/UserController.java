@@ -12,6 +12,8 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,7 +53,8 @@ public class UserController {
 
 
     @PostMapping
-    @Transactional
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, timeout = 100,
+            rollbackFor = Exception.class)
     @ResponseStatus(HttpStatus.CREATED)
     public HibernateUser savingUser(@RequestBody UserCreateRequest userCreateRequest) {
 

@@ -1,4 +1,4 @@
-package com.boss.converters;
+package com.boss.converters.user;
 
 import com.boss.controller.request.user.UserChangeRequest;
 import com.boss.domain.hibernate.HibernateUser;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityNotFoundException;
 
 @Component
-public class UserEditRequestConverter extends EntityConverter<UserChangeRequest, HibernateUser> {
+public class UserEditRequestConverter extends UserConverter<UserChangeRequest, HibernateUser> {
 
     private UserSpringDataRepository userRepository;
 

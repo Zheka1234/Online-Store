@@ -1,4 +1,4 @@
-package com.boss.converters;
+package com.boss.converters.user;
 
 import com.boss.controller.request.user.UserCreateRequest;
 import com.boss.domain.Credentials;
@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
-public class UserCreateRequestConverter extends EntityConverter<UserCreateRequest, HibernateUser> {
+public class UserCreateRequestConverter extends UserConverter<UserCreateRequest, HibernateUser> {
 
     private final PasswordEncoder passwordEncoder;
     @Override

@@ -7,6 +7,7 @@ import com.boss.domain.hibernate.HibernatePhone;
 import com.boss.repository.Phone.PhoneSpringDataRepository;
 import com.boss.service.phone.PhoneServis;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +36,8 @@ public class PhoneController {
 
     private final PhoneServis phoneServis;
 
+    private final ConversionService converter;
+
 
     @GetMapping
     public ResponseEntity<Object> findAllPhone(){
@@ -46,24 +49,15 @@ public class PhoneController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Object> createPhone(@RequestBody PhoneCreatRequest creatRequest){
-        HibernatePhone phone = new HibernatePhone();
-
-        phone.setBrand(creatRequest.getBrand());
-        phone.setModel(creatRequest.getModel());
-        phone.setColor(creatRequest.getColor());
-        phone.setDescription(creatRequest.getDescription());
-        phone.setPrice(creatRequest.getPrice());
-        phone.setCreationDate(new Timestamp(new Date().getTime()));
-        phone.setModificationDate(new Timestamp(new Date().getTime()));
-        phone.setInStock(true);
-
+    public ResponseEntity<Object> createPhone(@RequestBody PhoneCreatRequest request){
+        HibernatePhone phone = converter.convert(request, HibernatePhone.class);
         HibernatePhone createdPhone = phoneSpringDataRepository.save(phone);
 
         Map<String, Object> model = new HashMap<>();
         model.put("phone", createdPhone);
+        return new ResponseEntity<>(model, HttpStatus.CREATED);
 
-        return new ResponseEntity<>(model,HttpStatus.CREATED);
+
     }
 
     @DeleteMapping("/{id}")
