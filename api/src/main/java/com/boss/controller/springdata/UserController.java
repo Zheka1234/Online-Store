@@ -65,6 +65,10 @@ public class UserController {
         Map<String, Object> model = new HashMap<>();
         model.put("user", repository.findById(createdUser.getIdUser()).get());
 
+        for (HibernateRole updatedRole : hibernateUser.getRoles()) {
+            repository.createRoleRow(hibernateUser.getIdUser(), updatedRole.getIdRole());
+        }
+
         return repository.save(hibernateUser);
 
 
