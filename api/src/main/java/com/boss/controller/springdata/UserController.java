@@ -82,7 +82,7 @@ public class UserController {
         if (!CollectionUtils.isEmpty(roles)) {
             updatedRoles.addAll(roles);
         }
-        updatedRoles.add(roleSpringDataRepository.findHibernateRoleByIdRole(1l).get(0));
+
         updatedRoles.add(roleSpringDataRepository.findHibernateRoleByIdRole(2l).get(0));
 
         user.setRoles(updatedRoles);

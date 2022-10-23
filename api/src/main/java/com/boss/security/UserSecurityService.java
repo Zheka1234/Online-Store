@@ -40,7 +40,7 @@ public class UserSecurityService implements UserDetailsService {
                         user.getCredentials().getPassword(),
 //                        ["ROLE_USER", "ROLE_ADMIN"]
                         AuthorityUtils.commaSeparatedStringToAuthorityList(
-                                roleSpringDataRepository.findHibernateRoleByIdRole(user.getIdUser())
+                                roleSpringDataRepository.findRolesByUserid(user.getIdUser())
                                         .stream()
                                         .map(HibernateRole::getRoleName)
                                         .map(SystemRoles::name)
