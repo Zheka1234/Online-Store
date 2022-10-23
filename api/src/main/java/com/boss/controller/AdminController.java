@@ -60,7 +60,7 @@ public class AdminController {
     @Transactional
     @ResponseStatus(HttpStatus.OK)
 
-    public ResponseEntity<Object> updateBrand(@Valid
+    public ResponseEntity<Object> updateSuppliers(@Valid
                                               @org.springframework.web.bind.annotation.RequestBody SuppliersChangeRequest suppliersChangeRequest) {
 
         HibernateSuppliers hibernateSuppliers = conversionService.convert(suppliersChangeRequest, HibernateSuppliers.class);
@@ -78,7 +78,7 @@ public class AdminController {
     @Transactional
     @Operation(description = "This method allows deactivate the brand type in DataBase")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Object> deleteBrand(@PathVariable String id) {
+    public ResponseEntity<Object> deleteSuppliers(@PathVariable String id) {
 
         Integer suppliersId= 0;
         try {
