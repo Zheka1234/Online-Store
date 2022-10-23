@@ -16,14 +16,16 @@ public interface RoleSpringDataRepository extends  JpaRepository<HibernateRole, 
 
     List<HibernateRole> findHibernateRoleByIdRole(Long userId);
 
-   @Query("select r from HibernateRole r inner join r.users u where u.idUser = :userId")
+    @Query(value = "select * from phoneshop.roles " +
+            "inner join phoneshop.l_role_users " +
+            "on phoneshop.roles.id_role = phoneshop.l_role_users.id_role " +
+            "where phoneshop.l_role_users.id_user = :userId"
+            , nativeQuery = true)
     List<HibernateRole> findRolesByUserid(Long userId);
 
     @Cacheable("roles")
     @Query(value = "select r from HibernateRole r")
     List<HibernateRole> findAllCustom();
-
-
 
 
 }

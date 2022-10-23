@@ -1,11 +1,22 @@
 package com.boss.service.user;
 
 import com.boss.domain.hibernate.HibernateUser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface UserService {
 
-    Long delete(Long id);
+    HibernateUser create(HibernateUser hibernateUser);
 
+    HibernateUser delete(Long userId);
 
+    HibernateUser update(HibernateUser hibernateUser);
 
+    Page<HibernateUser> findAll(Pageable pageable);
+
+    List<HibernateUser> findAll();
+
+    HibernateUser findById(Long id);
 }

@@ -5,6 +5,7 @@ import com.boss.domain.SystemRoles;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.cache.annotation.Cacheable;
 
 import javax.persistence.Column;
@@ -47,8 +48,8 @@ public class HibernateRole {
 
     @ManyToMany
     @JoinTable(name = "l_role_users",
-            joinColumns = @JoinColumn(name = "id_role"),
-            inverseJoinColumns = @JoinColumn(name = "id_user")
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_role")
     )
     @JsonIgnoreProperties("roles")
     private Set<HibernateUser> users;
