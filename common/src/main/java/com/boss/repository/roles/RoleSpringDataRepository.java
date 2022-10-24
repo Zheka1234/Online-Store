@@ -24,8 +24,9 @@ public interface RoleSpringDataRepository extends  JpaRepository<HibernateRole, 
     List<HibernateRole> findRolesByUserid(Long userId);
 
     @Cacheable("roles")
-    @Query(value = "select r from HibernateRole r")
-    List<HibernateRole> findAllCustom();
+    @Query(value = "select r.idRole, r.roleName from HibernateRole r")
+    List<Object[]> findOnlyRoles();
+
 
 
 }

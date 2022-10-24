@@ -23,6 +23,10 @@ public class UserCreateRequestConverter extends UserConverter<UserCreateRequest,
 
         hibernateUser.setCreationDate(new Timestamp(new Date().getTime()));
 
+//        Credentials credentials = new Credentials(
+//                request.getLoginUser(),
+//                passwordEncoder.encode(request.getPasswordUsers());
+
 
         String simplePassword = RandomStringUtils.randomAlphabetic(10);
         System.out.println(simplePassword);

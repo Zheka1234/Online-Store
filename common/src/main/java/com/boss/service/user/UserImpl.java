@@ -23,6 +23,7 @@ public class UserImpl implements UserService {
     public final AdminService adminService;
 
     @Override
+    @Transactional
     public HibernateUser create(HibernateUser hibernateUser) {
 
         final Integer DEFAULT_USER_ROLE_ID = 1;
@@ -39,6 +40,7 @@ public class UserImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public HibernateUser delete(Long userId) {
 
         Optional<HibernateUser> result = userSpringDataRepository.findById(userId);
@@ -56,6 +58,7 @@ public class UserImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public HibernateUser update(HibernateUser hibernateUser) {
 
         return userSpringDataRepository.save(hibernateUser);

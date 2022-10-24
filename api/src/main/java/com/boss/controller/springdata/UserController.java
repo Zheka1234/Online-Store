@@ -6,7 +6,7 @@ import com.boss.controller.request.user.UserCreateRequest;
 import com.boss.domain.hibernate.HibernateUser;
 import com.boss.repository.user.UserSpringDataRepository;
 import com.boss.security.util.PrincipalUtil;
-import com.boss.service.user.UserService;
+import com.boss.service.user.UserImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -40,7 +40,7 @@ public class UserController {
 
     private final UserSpringDataRepository repository;
 
-    private final UserService service;
+    private final UserImpl service;
 
     public final ConversionService conversionService;
 
