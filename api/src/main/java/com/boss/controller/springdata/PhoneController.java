@@ -30,8 +30,6 @@ public class PhoneController {
 
     private final PhoneServiceImpl phoneService;
 
-    public final ConversionService converter;
-
 
     @GetMapping("/findAllPageable")
     @Parameter(

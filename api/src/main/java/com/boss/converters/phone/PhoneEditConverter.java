@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 @RequiredArgsConstructor
 public class PhoneEditConverter implements Converter<PhoneChangeRequest, HibernatePhone> {
 
-    private PhoneSpringDataRepository phoneSpringDataRepository;
+    private final PhoneSpringDataRepository phoneSpringDataRepository;
 
     @Override
     public HibernatePhone convert(PhoneChangeRequest request) {

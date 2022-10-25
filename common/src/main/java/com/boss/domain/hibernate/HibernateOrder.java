@@ -25,16 +25,6 @@ public class HibernateOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOrder;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "id_user")
-    private HibernateUser idUser;
-
-    @Column(name = "id_phone")
-    private Long idPhone;
-
-    @Column(name = "id_point")
-    private Long idPoint;
 
     @Column(name = "payment_type")
     private String paymentType;
@@ -47,6 +37,22 @@ public class HibernateOrder {
 
     @Column(name = "modification_date")
     private Timestamp modificationDate;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "id_user")
+    private HibernateUser idUser;
+
+    @ManyToOne
+    @JoinColumn(name = "id_phone")
+    @JsonBackReference
+    private HibernatePhone phone;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_point")
+    @JsonBackReference
+    private HibernatePoint point;
 
 
 

@@ -29,7 +29,7 @@ public class SuppliersController {
 
     private final SuppliersService service;
 
-    public final ConversionService conversionService;
+    private final ConversionService conversionService;
 
     @GetMapping("/findAllPageable")
     @Parameter(

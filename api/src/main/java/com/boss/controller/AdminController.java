@@ -26,9 +26,11 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,7 +47,7 @@ import java.util.Map;
 @Tag(name = "ADMIN/MODERATOR controller")
 public class AdminController {
 
-    public final ConversionService conversionService;
+    private final ConversionService conversionService;
 
     private final SuppliersService service;
 
@@ -54,7 +56,7 @@ public class AdminController {
 
     private final PhoneServiceImpl phoneService;
 
-    @PostMapping("/users/update")
+    @PutMapping("/users/update")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @org.springframework.transaction.annotation.Transactional
     @ResponseStatus(HttpStatus.OK)
@@ -130,7 +132,7 @@ public class AdminController {
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
 
-    @PostMapping("/suppliers/update")
+    @PutMapping("/suppliers/update")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @ResponseStatus(HttpStatus.OK)
@@ -148,7 +150,7 @@ public class AdminController {
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
-    @PostMapping("/suppliers/delete{id}")
+    @DeleteMapping("/suppliers/delete{id}")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @Operation(description = "This method allows deactivate the brand type in DataBase")
@@ -191,7 +193,7 @@ public class AdminController {
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
 
-    @PostMapping("/phone/update")
+    @PutMapping("/phone/update")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @org.springframework.transaction.annotation.Transactional
     @ResponseStatus(HttpStatus.OK)
@@ -213,7 +215,7 @@ public class AdminController {
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
-    @PostMapping("/phone/delete{id}")
+    @DeleteMapping("/phone/delete{id}")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @org.springframework.transaction.annotation.Transactional
     @Operation(description = "This method allows deactivate the phone in DataBase")

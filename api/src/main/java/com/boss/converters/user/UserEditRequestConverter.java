@@ -10,7 +10,7 @@ import javax.persistence.EntityNotFoundException;
 @Component
 public class UserEditRequestConverter extends UserConverter<UserChangeRequest, HibernateUser> {
 
-    private UserSpringDataRepository userRepository;
+    private final UserSpringDataRepository userRepository;
 
     public UserEditRequestConverter(UserSpringDataRepository userRepository) {
         this.userRepository = userRepository;

@@ -12,12 +12,12 @@ import javax.validation.constraints.Size;
 public class UserCreateRequest {
 
     @Schema(example = "name", required = true, minLength = 1, maxLength = 30)
-    @Size(min = 2, max = 30)
+    @Size(min = 4, max = 30)
     @NotBlank
     private String nameUsers;
 
     @Schema(example = "surname", required = true, minLength =10, maxLength = 70)
-    @Size(min = 2, max = 70)
+    @Size(min = 4, max = 70)
     @NotBlank
     private String surnameUsers;
 

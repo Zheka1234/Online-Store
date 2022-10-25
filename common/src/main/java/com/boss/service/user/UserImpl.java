@@ -20,7 +20,7 @@ public class UserImpl implements UserService {
 
     private final UserSpringDataRepository userSpringDataRepository;
 
-    public final AdminService adminService;
+    private final AdminService adminService;
 
     @Override
     @Transactional

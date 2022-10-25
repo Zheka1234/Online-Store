@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 @RequiredArgsConstructor
 public class SuppliersEditConverter implements Converter<SuppliersChangeRequest, HibernateSuppliers> {
 
-    private SuppliersSpringDataRepository repository;
+    private final SuppliersSpringDataRepository repository;
 
 
     @Override

@@ -19,8 +19,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +44,7 @@ public class UserController {
 
     private final UserImpl service;
 
-    public final ConversionService conversionService;
+    private final ConversionService conversionService;
 
     @GetMapping("/profile")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
@@ -79,7 +81,7 @@ public class UserController {
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @ResponseStatus(HttpStatus.OK)
@@ -113,7 +115,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @Operation(description = "This method allows deactivate the user in DataBase")

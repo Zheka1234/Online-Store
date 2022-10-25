@@ -25,8 +25,7 @@ public class PhoneCreatRequest {
     @NotBlank
     private String color;
 
-    @Schema(example = "1000000", required = true, minLength = 3, maxLength = 20)
-    @Size(min = 3, max = 20)
+    @Schema(example = "1000000", required = true, minLength = 1)
     @NotBlank
     private Double price;
 
