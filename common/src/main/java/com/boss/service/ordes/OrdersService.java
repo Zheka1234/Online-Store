@@ -18,5 +18,5 @@ public interface OrdersService {
 
     HibernateOrder  findById(Long id);
 
-    HibernateOrder findByUserId(Long userId);
+
 }

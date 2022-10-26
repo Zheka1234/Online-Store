@@ -74,7 +74,7 @@ public class HibernateUser {
     private Set<HibernateRole> roles;
 
 
-    @OneToMany(mappedBy="idUser", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="idUser", fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
     private Set<HibernateOrder> orders;
 

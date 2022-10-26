@@ -16,7 +16,7 @@ public class PointCreatRequest {
     @NotBlank
     private String address;
 
-    @Schema(example = "8", required = true, minLength = 1, maxLength = 20)
+    @Schema(example = "8 - 9", required = true, minLength = 1, maxLength = 20)
     @Size(min = 1, max = 20)
     @NotBlank
     private String hours;

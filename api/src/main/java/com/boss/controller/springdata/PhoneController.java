@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ import java.util.Collections;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/rest/data/phone")
+@RequestMapping("phone")
 @Tag(name = "Phone controller")
 public class PhoneController {
 
@@ -48,7 +47,7 @@ public class PhoneController {
     @GetMapping("/findById{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> findById(@PathVariable String id) {
-        Long phoneId = 0L;
+        Long phoneId ;
         try {
             phoneId = Long.parseLong(id);
         } catch (NumberFormatException e) {

@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @Data
 @Entity
 @Cacheable
-@Table(name = "order")
+@Table(name = "orders")
 public class HibernateOrder {
 
     @Id

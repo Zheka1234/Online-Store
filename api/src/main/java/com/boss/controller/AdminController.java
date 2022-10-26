@@ -3,13 +3,16 @@ package com.boss.controller;
 
 import com.boss.controller.request.phone.PhoneChangeRequest;
 import com.boss.controller.request.phone.PhoneCreatRequest;
+import com.boss.controller.request.point.PointCreatRequest;
 import com.boss.controller.request.suppliers.SuppliersChangeRequest;
 import com.boss.controller.request.suppliers.SuppliersCreat;
 import com.boss.controller.request.user.UserChangeRequest;
 import com.boss.domain.hibernate.HibernatePhone;
+import com.boss.domain.hibernate.HibernatePoint;
 import com.boss.domain.hibernate.HibernateSuppliers;
 import com.boss.domain.hibernate.HibernateUser;
 import com.boss.service.phone.PhoneServiceImpl;
+import com.boss.service.point.PointServiceImpl;
 import com.boss.service.suppliers.SuppliersService;
 import com.boss.service.user.UserImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,6 +51,8 @@ import java.util.Map;
 public class AdminController {
 
     private final ConversionService conversionService;
+
+    private final PointServiceImpl pointService;
 
     private final SuppliersService service;
 
@@ -243,6 +248,23 @@ public class AdminController {
         return new ResponseEntity<>(phoneService.findAll(), HttpStatus.OK);
     }
 
+
+    @PostMapping("/point/create")
+    @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
+    @Transactional
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Object> createPoint(@Valid
+                                                  @org.springframework.web.bind.annotation.RequestBody PointCreatRequest pointCreatRequest) {
+
+        HibernatePoint hibernatePoint = conversionService.convert(pointCreatRequest, HibernatePoint.class);
+
+        hibernatePoint = pointService.create(hibernatePoint);
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("Point", service.findById(hibernatePoint.getIdPoint()));
+
+        return new ResponseEntity<>(model, HttpStatus.CREATED);
+    }
 
 
 }
