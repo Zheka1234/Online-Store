@@ -30,7 +30,7 @@ public class DeliveryPointController {
     private final PointServiceImpl service;
 
 
-    @GetMapping("/findAllPageable")
+    @GetMapping
     @Parameter(
             in = ParameterIn.QUERY,
             description =
@@ -44,7 +44,7 @@ public class DeliveryPointController {
         return new ResponseEntity<>(service.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/findById{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> findById(@PathVariable String id) {
         Integer pointId = 0;
@@ -58,7 +58,7 @@ public class DeliveryPointController {
                 Collections.singletonMap("result", service.findById(Long.valueOf(pointId))), HttpStatus.OK);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/show")
     public ResponseEntity<Object> findAll() {
 
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);

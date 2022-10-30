@@ -31,7 +31,7 @@ public class PhoneController {
     private final PhoneServiceImpl phoneService;
 
 
-    @GetMapping("/findAllPageable")
+    @GetMapping
     @Parameter(
             in = ParameterIn.QUERY,
             description =
@@ -45,7 +45,7 @@ public class PhoneController {
         return new ResponseEntity<>(phoneService.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/findById{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> findById(@PathVariable String id) {
         Long phoneId ;

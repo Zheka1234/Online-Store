@@ -46,7 +46,7 @@ public class UserController {
 
     private final ConversionService conversionService;
 
-    @GetMapping("/profile")
+    @GetMapping()
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @ResponseStatus(HttpStatus.OK)
     public HibernateUser showProfile(Principal principal) {
@@ -60,7 +60,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
@@ -81,7 +81,7 @@ public class UserController {
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @ResponseStatus(HttpStatus.OK)
@@ -115,7 +115,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping()
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @Operation(description = "This method allows deactivate the user in DataBase")

@@ -31,7 +31,7 @@ public class SuppliersController {
 
     private final ConversionService conversionService;
 
-    @GetMapping("/findAllPageable")
+    @GetMapping()
     @Parameter(
             in = ParameterIn.QUERY,
             description =
@@ -45,7 +45,7 @@ public class SuppliersController {
         return new ResponseEntity<>(service.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/findById{id}")
+    @GetMapping("/search/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> findById(@PathVariable String id) {
         Integer supplierId = 0;
@@ -59,7 +59,7 @@ public class SuppliersController {
                 Collections.singletonMap("result", service.findById(Long.valueOf(supplierId))), HttpStatus.OK);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/show/{id}")
     public ResponseEntity<Object> findAll() {
 
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);

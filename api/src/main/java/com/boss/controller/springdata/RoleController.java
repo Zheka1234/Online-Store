@@ -43,7 +43,7 @@ public class RoleController {
 
     public final ConversionService conversionService;
 
-    @PostMapping("/create")
+    @PostMapping
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
@@ -65,7 +65,7 @@ public class RoleController {
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @ResponseStatus(HttpStatus.OK)
@@ -87,7 +87,7 @@ public class RoleController {
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete{id}")
+    @DeleteMapping
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Transactional
     @Operation(description = "This method allows deactivate the role in DataBase")
@@ -108,7 +108,7 @@ public class RoleController {
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
-    @GetMapping("/findAllPageable")
+    @GetMapping
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @Parameter(
             in = ParameterIn.QUERY,
@@ -123,14 +123,14 @@ public class RoleController {
         return new ResponseEntity<>(service.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/show")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     public ResponseEntity<Object> findAll() {
 
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/showRoles")
+    @GetMapping("/{id}")
     @Operation(description = "Shows roles without users")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     public ResponseEntity<Object> findOnlyRoles() {
@@ -138,7 +138,7 @@ public class RoleController {
         return new ResponseEntity<>(service.findOnlyRoles(), HttpStatus.OK);
     }
 
-    @GetMapping("/findById{id}")
+    @GetMapping("show/{id}")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> findById(@PathVariable String id) {
