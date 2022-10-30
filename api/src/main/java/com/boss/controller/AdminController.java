@@ -258,10 +258,10 @@ public class AdminController {
 
         HibernatePoint hibernatePoint = conversionService.convert(pointCreatRequest, HibernatePoint.class);
 
-        hibernatePoint = pointService.create(hibernatePoint);
+        HibernatePoint newHibernatePoint = pointService.create(hibernatePoint);
 
         Map<String, Object> model = new HashMap<>();
-        model.put("Point", service.findById(hibernatePoint.getIdPoint()));
+        model.put("Point", pointService.findById(newHibernatePoint.getIdPoint()));
 
         return new ResponseEntity<>(model, HttpStatus.CREATED);
     }

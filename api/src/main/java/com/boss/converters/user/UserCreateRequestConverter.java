@@ -25,7 +25,8 @@ public class UserCreateRequestConverter extends UserConverter<UserCreateRequest,
 
 //        Credentials credentials = new Credentials(
 //                request.getLoginUser(),
-//                passwordEncoder.encode(request.getPasswordUsers());
+//                passwordEncoder.encode(request.getPasswordUsers()));
+
 
 
         String simplePassword = RandomStringUtils.randomAlphabetic(10);

@@ -2,6 +2,8 @@ package com.boss.domain.hibernate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
@@ -18,6 +20,8 @@ import java.sql.Timestamp;
 @Entity
 @Cacheable
 @Table(name = "orders")
+@EqualsAndHashCode(exclude = {"idUser","phone","point"})
+@ToString(exclude = {"idUser","phone","point"})
 public class HibernateOrder {
 
     @Id

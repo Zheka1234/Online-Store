@@ -1,6 +1,7 @@
 package com.boss.controller.springdata;
 
 
+import com.boss.domain.hibernate.HibernatePhone;
 import com.boss.service.phone.PhoneServiceImpl;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -23,7 +24,7 @@ import java.util.Collections;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("phone")
+@RequestMapping("/rest/data/phone")
 @Tag(name = "Phone controller")
 public class PhoneController {
 
@@ -54,8 +55,9 @@ public class PhoneController {
             throw new NumberFormatException("Invalid phone ID");
         }
 
+        HibernatePhone phone = phoneService.findById(phoneId);
         return new ResponseEntity<>(
-                Collections.singletonMap("error", phoneService.findById(phoneId)), HttpStatus.OK);
+                Collections.singletonMap("result", phone), HttpStatus.OK);
     }
 
 }

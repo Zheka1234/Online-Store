@@ -3,6 +3,8 @@ package com.boss.domain.hibernate;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.cache.annotation.Cacheable;
 
 import javax.persistence.CascadeType;
@@ -21,6 +23,8 @@ import java.util.Set;
 @Entity
 @Table(name = "phone")
 @Cacheable("phone")
+@EqualsAndHashCode(exclude = "hibernateOrders")
+@ToString(exclude = "hibernateOrders")
 public class HibernatePhone {
 
     @Id

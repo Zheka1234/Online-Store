@@ -23,7 +23,7 @@ import java.util.Collections;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("point")
+@RequestMapping("/rest/data/point")
 @Tag(name = "Point Controller")
 public class DeliveryPointController {
 
