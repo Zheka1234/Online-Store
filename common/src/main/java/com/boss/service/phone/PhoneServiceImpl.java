@@ -29,9 +29,9 @@ public class PhoneServiceImpl implements PhoneService {
 
     @Override
     @Transactional
-    public HibernatePhone delete(Long id) {
+    public Long delete(Long id) {
         phoneSpringDataRepository.deleteById(id);
-        return delete(id);
+        return id;
     }
 
     @Override

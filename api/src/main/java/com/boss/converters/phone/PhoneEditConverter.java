@@ -11,7 +11,7 @@ import javax.persistence.EntityNotFoundException;
 
 @Component
 @RequiredArgsConstructor
-public class PhoneEditConverter implements Converter<PhoneChangeRequest, HibernatePhone> {
+public class PhoneEditConverter extends PhoneBase<PhoneChangeRequest, HibernatePhone> {
 
     private final PhoneSpringDataRepository phoneSpringDataRepository;
 
@@ -19,6 +19,6 @@ public class PhoneEditConverter implements Converter<PhoneChangeRequest, Hiberna
     public HibernatePhone convert(PhoneChangeRequest request) {
         HibernatePhone phone =
                 phoneSpringDataRepository.findById(request.getId()).orElseThrow(EntityNotFoundException::new);
-        return phone;
+        return doConvert(phone, request);
     }
 }

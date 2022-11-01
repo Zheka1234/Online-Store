@@ -12,7 +12,7 @@ import javax.persistence.EntityNotFoundException;
 
 @Component
 @RequiredArgsConstructor
-public class PointEditConverter implements Converter<PointChangeRequest, HibernatePoint> {
+public class PointEditConverter extends PointBase<PointChangeRequest, HibernatePoint> {
 
     private final PointSpringDataRepository pointSpringDataRepository;
 
@@ -23,6 +23,6 @@ public class PointEditConverter implements Converter<PointChangeRequest, Hiberna
         HibernatePoint hibernatePoint =
                 pointSpringDataRepository.findById(source.getId()).orElseThrow(EntityNotFoundException::new);
 
-        return hibernatePoint;
+        return doCovert(hibernatePoint, source);
     }
 }

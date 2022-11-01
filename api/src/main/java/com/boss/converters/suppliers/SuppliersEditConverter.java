@@ -11,7 +11,7 @@ import javax.persistence.EntityNotFoundException;
 
 @Component
 @RequiredArgsConstructor
-public class SuppliersEditConverter implements Converter<SuppliersChangeRequest, HibernateSuppliers> {
+public class SuppliersEditConverter extends SuppliersBase<SuppliersChangeRequest, HibernateSuppliers> {
 
     private final SuppliersSpringDataRepository repository;
 
@@ -22,6 +22,6 @@ public class SuppliersEditConverter implements Converter<SuppliersChangeRequest,
         HibernateSuppliers suppliers =
                 repository.findById(source.getId()).orElseThrow(EntityNotFoundException::new);
 
-        return suppliers;
+        return doConvert(suppliers,source);
     }
 }

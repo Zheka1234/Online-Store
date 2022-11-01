@@ -32,10 +32,10 @@ public class SuppliersServiceImpl implements SuppliersService {
 
     @Transactional
     @Override
-    public HibernateSuppliers delete(Long id) {
+    public Long delete(Long id) {
 
         repository.deleteById(id);
-        return delete(id);
+        return id;
     }
 
     @Transactional

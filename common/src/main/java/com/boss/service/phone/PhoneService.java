@@ -10,7 +10,7 @@ public interface PhoneService {
 
     HibernatePhone create(HibernatePhone hibernatePhone);
 
-    HibernatePhone delete(Long phoneId);
+    Long delete(Long phoneId);
 
     HibernatePhone update(HibernatePhone hibernatePhone);
 

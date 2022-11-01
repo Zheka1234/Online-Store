@@ -9,20 +9,15 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Component
-public class PhoneCreateRequestConverter implements Converter<PhoneCreatRequest, HibernatePhone> {
+public class PhoneCreateRequestConverter extends PhoneBase<PhoneCreatRequest, HibernatePhone> {
 
 
     @Override
     public HibernatePhone convert(PhoneCreatRequest request) {
         HibernatePhone hibernatePhone = new HibernatePhone();
-        hibernatePhone.setBrand(request.getBrand());
-        hibernatePhone.setModel(request.getModel());
-        hibernatePhone.setColor(request.getColor());
-        hibernatePhone.setDescription(request.getDescription());
-        hibernatePhone.setPrice(request.getPrice());
         hibernatePhone.setInStock(true);
         hibernatePhone.setCreationDate(new Timestamp(new Date().getTime()));
         hibernatePhone.setModificationDate(new Timestamp(new Date().getTime()));
-        return hibernatePhone;
+        return doConvert(hibernatePhone,request);
     }
 }

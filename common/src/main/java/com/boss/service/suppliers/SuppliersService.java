@@ -10,7 +10,7 @@ public interface SuppliersService {
 
     HibernateSuppliers create(HibernateSuppliers hibernateSuppliers);
 
-    HibernateSuppliers delete(Long Id);
+    Long delete(Long Id);
 
     HibernateSuppliers update(HibernateSuppliers hibernateSuppliers);
 

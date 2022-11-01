@@ -10,18 +10,16 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Component
-public class PointCreateConverter implements Converter<PointCreatRequest, HibernatePoint> {
+public class PointCreateConverter extends PointBase<PointCreatRequest, HibernatePoint> {
 
     @Override
     public HibernatePoint convert(PointCreatRequest source) {
 
         HibernatePoint hibernatePoint = new HibernatePoint();
 
-        hibernatePoint.setAddressPoint(source.getAddress());
-        hibernatePoint.setHours(source.getHours());
         hibernatePoint.setCreationDate(new Timestamp(new Date().getTime()));
         hibernatePoint.setModificationDate(new Timestamp(new Date().getTime()));
 
-        return hibernatePoint;
+        return doCovert(hibernatePoint,source);
     }
 }

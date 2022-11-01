@@ -52,6 +52,7 @@ public class AdminController {
 
     private final ConversionService conversionService;
 
+
     private final PointServiceImpl pointService;
 
     private final SuppliersService service;
@@ -147,10 +148,10 @@ public class AdminController {
 
         HibernateSuppliers hibernateSuppliers = conversionService.convert(suppliersChangeRequest, HibernateSuppliers.class);
 
-        hibernateSuppliers = service.update(hibernateSuppliers);
+        HibernateSuppliers newSupplier = service.update(hibernateSuppliers);
 
         Map<String, Object> model = new HashMap<>();
-        model.put("Suppliers", service.findById(hibernateSuppliers.getIdSuppliers()));
+        model.put("Suppliers", newSupplier);
 
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
@@ -161,17 +162,18 @@ public class AdminController {
     @Operation(description = "This method allows deactivate the brand type in DataBase")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> deleteSuppliers(@PathVariable String id) {
-
-        Integer suppliersId= 0;
+//        Long supId = Long.parseLong(id) ;
+        Integer suppliersId;
         try {
             suppliersId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Invalid suppliers id");
         }
-        HibernateSuppliers hibernateSuppliers = service.delete(Long.valueOf(suppliersId));
+        //        HibernateSuppliers hibernateSuppliers =
+                service.delete(Long.valueOf(suppliersId));
 
         Map<String, Object> model = new HashMap<>();
-        model.put("Suppliers", service.findById(hibernateSuppliers.getIdSuppliers()));
+        model.put("Suppliers was deleted id: ", id);
 
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
@@ -233,10 +235,10 @@ public class AdminController {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Invalid phone ID");
         }
-        HibernatePhone hibernatePhone = phoneService.delete(phoneId);
+        phoneService.delete(phoneId);
 
         Map<String, Object> model = new HashMap<>();
-        model.put("phone", phoneService.findById(hibernatePhone.getIdPhone()));
+        model.put("phone is deleted", id);
 
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
