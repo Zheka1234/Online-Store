@@ -1,4 +1,5 @@
 # FinalProject
+Phone buying service
 # Technology
 Spring Boot
 Spring Data(JPA)
