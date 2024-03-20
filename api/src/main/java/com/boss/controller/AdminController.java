@@ -126,7 +126,7 @@ public class AdminController {
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> createSuppliers(@Valid
-                                              @org.springframework.web.bind.annotation.RequestBody SuppliersCreat suppliersCreat) {
+                                                  @org.springframework.web.bind.annotation.RequestBody SuppliersCreat suppliersCreat) {
 
         HibernateSuppliers hibernateSuppliers = conversionService.convert(suppliersCreat, HibernateSuppliers.class);
 
@@ -140,11 +140,10 @@ public class AdminController {
 
     @PutMapping("/suppliers/update")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
-    @Transactional
     @ResponseStatus(HttpStatus.OK)
 
     public ResponseEntity<Object> updateSuppliers(@Valid
-                                              @org.springframework.web.bind.annotation.RequestBody SuppliersChangeRequest suppliersChangeRequest) {
+                                                  @org.springframework.web.bind.annotation.RequestBody SuppliersChangeRequest suppliersChangeRequest) {
 
         HibernateSuppliers hibernateSuppliers = conversionService.convert(suppliersChangeRequest, HibernateSuppliers.class);
 
@@ -158,7 +157,6 @@ public class AdminController {
 
     @DeleteMapping("/suppliers/delete{id}")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
-    @Transactional
     @Operation(description = "This method allows deactivate the brand type in DataBase")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> deleteSuppliers(@PathVariable String id) {
@@ -170,7 +168,7 @@ public class AdminController {
             throw new NumberFormatException("Invalid suppliers id");
         }
         //        HibernateSuppliers hibernateSuppliers =
-                service.delete(Long.valueOf(suppliersId));
+        service.delete(Long.valueOf(suppliersId));
 
         Map<String, Object> model = new HashMap<>();
         model.put("Suppliers was deleted id: ", id);
@@ -253,10 +251,9 @@ public class AdminController {
 
     @PostMapping("/point/create")
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
-    @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Object> createPoint(@Valid
-                                                  @org.springframework.web.bind.annotation.RequestBody PointCreatRequest pointCreatRequest) {
+                                              @org.springframework.web.bind.annotation.RequestBody PointCreatRequest pointCreatRequest) {
 
         HibernatePoint hibernatePoint = conversionService.convert(pointCreatRequest, HibernatePoint.class);
 

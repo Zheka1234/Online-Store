@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +28,6 @@ public class SuppliersController {
 
     private final SuppliersService service;
 
-    private final ConversionService conversionService;
-
     @GetMapping()
     @Parameter(
             in = ParameterIn.QUERY,
@@ -45,7 +42,7 @@ public class SuppliersController {
         return new ResponseEntity<>(service.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/search/{id}")
+    @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> findById(@PathVariable String id) {
         Integer supplierId = 0;
@@ -59,7 +56,7 @@ public class SuppliersController {
                 Collections.singletonMap("result", service.findById(Long.valueOf(supplierId))), HttpStatus.OK);
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/show")
     public ResponseEntity<Object> findAll() {
 
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);

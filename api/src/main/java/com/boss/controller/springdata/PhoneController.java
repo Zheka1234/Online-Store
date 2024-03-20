@@ -48,7 +48,7 @@ public class PhoneController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> findById(@PathVariable String id) {
-        Long phoneId ;
+        Long phoneId;
         try {
             phoneId = Long.parseLong(id);
         } catch (NumberFormatException e) {

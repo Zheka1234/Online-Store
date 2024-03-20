@@ -18,7 +18,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AuthorizationServiceException;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,7 +60,6 @@ public class UserController {
     }
 
     @PostMapping()
-    @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = "This method allows create a new user in DataBase.",
@@ -83,7 +81,6 @@ public class UserController {
 
     @PutMapping()
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
-    @Transactional
     @ResponseStatus(HttpStatus.OK)
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = "This method allows update the user in DataBase.",
@@ -117,7 +114,6 @@ public class UserController {
 
     @DeleteMapping()
     @Parameter(in = ParameterIn.HEADER, name = "X-Auth-Token", required = true)
-    @Transactional
     @Operation(description = "This method allows deactivate the user in DataBase")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> deleteUser(Principal principal) {

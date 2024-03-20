@@ -30,8 +30,6 @@
 
     </properties>
 
-
-
     <build>
         <plugins>
             <plugin>
